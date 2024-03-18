@@ -1,31 +1,25 @@
-export function Links() {
-  return (
-    <div>
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <LinkCard
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          title="Docs"
-          description="Find in-depth information about Next.js features and API."
-        />
-        <LinkCard
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          title="Learn"
-          description="Learn about Next.js in an interactive course with quizzes!"
-        />
-        <LinkCard
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          title="Templates"
-          description="Discover and deploy boilerplate example Next.js projects."
-        />
-        <LinkCard
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          title="Deploy"
-          description="Instantly deploy your Next.js site to a shareable URL with Vercel."
-        />
-      </div>
-    </div>
-  );
-}
+const linkData = [
+  {
+    href: "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
+    title: "Docs",
+    description: "Find in-depth information about Next.js features and API."
+  },
+  {
+    href: "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
+    title: "Learn",
+    description: "Learn about Next.js in an interactive course with quizzes!"
+  },
+  {
+    href: "https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
+    title: "Templates",
+    description: "Discover and deploy boilerplate example Next.js projects."
+  },
+  {
+    href: "https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
+    title: "Deploy",
+    description: "Instantly deploy your Next.js site to a shareable URL with Vercel."
+  }
+];
 
 function LinkCard({ href, title, description }) {
   return (
@@ -46,3 +40,19 @@ function LinkCard({ href, title, description }) {
   );
 }
 
+export function Links() {
+  return (
+    <div>
+      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+        {linkData.map((link, index) => (
+          <LinkCard
+            key={index}
+            href={link.href}
+            title={link.title}
+            description={link.description}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
