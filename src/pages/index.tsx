@@ -1,13 +1,8 @@
-import { useEffect } from "react";
 import {Main} from "../components/Main"
+import {useBgLightBlue} from "../hooks/useBgLightBlue"
 
 export default function Home() {
-  useEffect(()=>{
-    document.body.style.backgroundColor = "lightblue";
-    return ()=>{
-        document.body.style.backgroundColor = "";
-    };
-},[]);
+  useBgLightBlue();
   return (
     <Main page="index"/>
   );

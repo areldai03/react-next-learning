@@ -1,42 +1,16 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { Links } from "../components/Links"
-import { Headline } from "../components/Headline"
-import { Header } from "../components/Header"
-import { useCallback, useState } from "react";
-
+import { Links } from "../components/Links";
+import { Headline } from "../components/Headline";
+import { Header } from "../components/Header";
+import {useCounter} from "../hooks/useCounter";
+import {useInputArray} from "../hooks/useInputArray";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export function Main(props) {
-
-    const [count, setCount] = useState(1);
-    const [isShow, setIsShow] = useState(true);
-    const [array, setArray] = useState([]);
-    const [text, setText] = useState("");
-
-
-    const handleClick = useCallback(() =>{
-        setCount((count)=>count+1);
-    }, []);
-
-    const handleDisplay = useCallback(()=>{
-        setIsShow((isShow)=>!isShow);
-    }, []);
-
-    const handleInput = useCallback((e)=>{
-        setText(e.target.value)
-    }, []);
-
-    const handleAdd = useCallback(()=>{
-        setArray((prevArray)=>{
-            const newArray = [...prevArray, text];
-            return newArray;
-        });
-    }, [text]);
-
-    
-
+    const {count, isShow, handleClick, handleDisplay} = useCounter();
+    const {array, text, handleInput, handleAdd} = useInputArray();
 
     return (
         <>
