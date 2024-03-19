@@ -3,17 +3,27 @@ import { Inter } from "next/font/google";
 import { Links } from "../components/Links"
 import { Headline } from "../components/Headline"
 import { Header } from "../components/Header"
+import { useState } from "react";
 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export function Main(props) {
+
+    const [count, setCount] = useState(1);
+    function handleClick(e){
+        setCount((count)=>count+1);
+    };
+
+
     return (
         <>
             <Header></Header>
             <main
                 className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
             >
+                <h1>{count}</h1>
+                <button onClick={handleClick}>ボタン</button>
 
                 <Headline file="index">
                     <code className="font-mono font-bold">pages/{props.page}.tsx</code>
