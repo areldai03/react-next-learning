@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { Links } from "../components/Links"
 import { Headline } from "../components/Headline"
 import { Header } from "../components/Header"
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -11,14 +11,31 @@ const inter = Inter({ subsets: ["latin"] });
 export function Main(props) {
 
     const [count, setCount] = useState(1);
-    function handleClick(){
+    const [isShow, setIsShow] = useState(true);
+    const [array, setArray] = useState([]);
+    const [text, setText] = useState("");
+
+
+    const handleClick = useCallback(() =>{
         setCount((count)=>count+1);
-    };
-    
-    const [isShow, setIsShow] = useState(true)
-    const handleDisplay = ()=>{
+    }, []);
+
+    const handleDisplay = useCallback(()=>{
         setIsShow((isShow)=>!isShow);
-    };
+    }, []);
+
+    const handleInput = useCallback((e)=>{
+        setText(e.target.value)
+    }, []);
+
+    const handleAdd = useCallback(()=>{
+        setArray((prevArray)=>{
+            const newArray = [...prevArray, text];
+            return newArray;
+        });
+    }, [text]);
+
+    
 
 
     return (
@@ -29,6 +46,15 @@ export function Main(props) {
             >
                 {isShow ? <><h1>{count}</h1> <button onClick={handleClick}>ボタン</button></> : null}
                 <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+                <input type="text" value={text} onChange={handleInput}></input>
+                <button onClick={handleAdd}>追加</button>
+                <ul>
+                    {array.map((item,index)=>{
+                        return(
+                            <li key={index}>{item}</li>
+                        )
+                    })}
+                </ul>
 
                 <Headline file="index">
                     <code className="font-mono font-bold">pages/{props.page}.tsx</code>
