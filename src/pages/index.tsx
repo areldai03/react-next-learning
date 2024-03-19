@@ -7,7 +7,7 @@ export default function Home() {
     return ()=>{
         document.body.style.backgroundColor = "";
     };
-});
+},[]);
   return (
     <Main page="index"/>
   );
