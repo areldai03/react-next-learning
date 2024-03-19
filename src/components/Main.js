@@ -11,8 +11,13 @@ const inter = Inter({ subsets: ["latin"] });
 export function Main(props) {
 
     const [count, setCount] = useState(1);
-    function handleClick(e){
+    function handleClick(){
         setCount((count)=>count+1);
+    };
+    
+    const [isShow, setIsShow] = useState(true)
+    const handleDisplay = ()=>{
+        setIsShow((isShow)=>!isShow);
     };
 
 
@@ -22,8 +27,8 @@ export function Main(props) {
             <main
                 className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
             >
-                <h1>{count}</h1>
-                <button onClick={handleClick}>ボタン</button>
+                {isShow ? <><h1>{count}</h1> <button onClick={handleClick}>ボタン</button></> : null}
+                <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
 
                 <Headline file="index">
                     <code className="font-mono font-bold">pages/{props.page}.tsx</code>
