@@ -47,7 +47,7 @@ export function Main(props) {
                 {isShow ? <><h1>{count}</h1> <button onClick={handleClick}>ボタン</button></> : null}
                 <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
                 <input type="text" value={text} onChange={handleInput}></input>
-                <button onClick={handleAdd}>追加</button>
+                <button className="mt-5" onClick={handleAdd}>追加</button>
                 <ul>
                     {array.map((item,index)=>{
                         return(
